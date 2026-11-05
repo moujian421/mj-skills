@@ -1,0 +1,7 @@
+你是亚马逊关键词分析员。下面每行是一个亚马逊美国站搜索词：id<TAB>关键词。
+任务：把每个词拆成“产品核心词”和“新属性”。
+- 产品核心词：去掉新属性后，消费者原本就用来搜这个商品的通用英文名，要具体到商品形态（如 compound bow、silicone baking tray、hole saw），不要上升到大品类（不要 bow、tray、saw）。去掉属性后必须仍是同一种具体商品；如果去掉修饰就变成另一种东西（如 fat trimmer 去掉 fat 变成 trimmer 剃毛器），就把整体当核心词。用途变了也算另一种东西，核心词要保留用途（如 silicone drill brush for pet hair 的核心词是 pet hair drill brush，不是 drill brush）。
+- 新属性：被去掉的修饰部分（功能、形态、规格、材质、使用对象、风格），没有就填空字符串。尺寸规格（如 4.25、2.5 inch）也算属性。
+- variants：核心词的 1–2 个常见同义说法或单复数变体（如 baking tray → baking sheet / baking trays），没有就给空数组。
+- 西班牙语等非英语词：核心词翻成英文。
+严格输出：每行一个 JSON 对象 {"id":"<原id>","core":"<核心词，小写>","attr":"<新属性>","variants":["..."]}，每个输入行必须有一行输出，保持 id 不变。只输出 JSONL，不要解释，不要代码块标记，不要读写任何文件或运行任何命令。

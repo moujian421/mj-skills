@@ -1,0 +1,4 @@
+interface:
+  display_name: "MJ-Listing 撰写"
+  short_description: "按最新亚马逊规则和可追溯证据撰写、审核 Listing 标题、Item highlights、五点和后台词"
+  default_prompt: "Use $mj-listing to write and review this Amazon listing with verified facts, competitor wording and current title rules."

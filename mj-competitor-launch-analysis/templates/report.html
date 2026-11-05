@@ -1,0 +1,218 @@
+<title>__PAGE_TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* Layout: report column with a sticky section index on wide screens; summary (meta, KPIs, conclusions, chart) before detail sections */
+:root{
+  --bg:#F3F5F7; --surface:#FFFFFF; --ink:#16212B; --muted:#5A6774; --line:#DCE2E8;
+  --accent:#0E6B66; --accent-soft:#E0EFED; --price:#B05F10; --event:#6B4FA0;
+  --good:#1D7838; --good-soft:#E3F3E7; --warn:#9A5A00; --warn-soft:#FBF0DC;
+  --bad:#B42318; --bad-soft:#FBE7E5; --infer:#5B4A8B; --infer-soft:#ECE8F6;
+  --shade:rgba(14,107,102,.07);
+  --font-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --font-data:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1519; --surface:#161E24; --ink:#E5ECF1; --muted:#93A1AD; --line:#27333C;
+  --accent:#4DB6AE; --accent-soft:#123230; --price:#E59A4C; --event:#A893DA;
+  --good:#5CBB7C; --good-soft:#15301F; --warn:#E2A54B; --warn-soft:#33270F;
+  --bad:#F07A6D; --bad-soft:#3A1A17; --infer:#B8A6EA; --infer-soft:#261F3B;
+  --shade:rgba(77,182,174,.09); color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0F1519; --surface:#161E24; --ink:#E5ECF1; --muted:#93A1AD; --line:#27333C;
+  --accent:#4DB6AE; --accent-soft:#123230; --price:#E59A4C; --event:#A893DA;
+  --good:#5CBB7C; --good-soft:#15301F; --warn:#E2A54B; --warn-soft:#33270F;
+  --bad:#F07A6D; --bad-soft:#3A1A17; --infer:#B8A6EA; --infer-soft:#261F3B;
+  --shade:rgba(77,182,174,.09); color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:184px minmax(0,1fr);gap:40px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;font-size:13px}
+nav.toc .lbl{color:var(--muted);letter-spacing:.08em;font-size:11px;margin-bottom:8px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:5px 10px;border-left:2px solid var(--line)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--ink);border-left-color:var(--accent);outline:none}
+main{min-width:0;display:flex;flex-direction:column;gap:28px}
+header h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:700;text-wrap:balance}
+header .sub{color:var(--muted);margin:0 0 16px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 20px;margin:0;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.meta div{min-width:0}
+.meta dt{font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.meta dd{margin:0;font-weight:500;font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-width:0}
+.kpi .k{font-size:12px;color:var(--muted)}
+.kpi .v{font-family:var(--font-data);font-size:24px;font-weight:500;line-height:1.3;margin-top:2px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.kpi .n{font-size:12px;color:var(--muted);margin-top:2px}
+section.block{background:var(--surface);border:1px solid var(--line);border-radius:10px;min-width:0}
+section.block>details>summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;align-items:baseline;gap:10px}
+section.block>details>summary::-webkit-details-marker{display:none}
+section.block>details>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:10px}
+section.block h2{font-size:18px;margin:0;font-weight:700}
+summary .num{font-family:var(--font-data);color:var(--accent);font-size:13px}
+summary .chev{margin-left:auto;color:var(--muted);font-size:12px}
+details[open]>summary .chev::after{content:"收起"} details:not([open])>summary .chev::after{content:"展开"}
+.body{padding:0 20px 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.body p{margin:0;max-width:72ch}
+.body ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;max-width:80ch}
+.body h3{font-size:15px;margin:6px 0 0;font-weight:700}
+ol.concl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:c}
+ol.concl li{counter-increment:c;display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px}
+ol.concl li::before{content:counter(c);font-family:var(--font-data);color:var(--accent);font-weight:500;padding-top:1px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.55}
+th,td{padding:8px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-weight:500;color:var(--muted);font-size:12px;background:var(--bg);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td{font-variant-numeric:tabular-nums}
+td.n{text-align:right;white-space:nowrap;font-family:var(--font-data);font-size:12.5px}
+.note{font-size:12.5px;color:var(--muted)}
+.tag{display:inline-block;font-size:11.5px;line-height:1.5;padding:0 7px;border-radius:999px;margin:0 2px;white-space:nowrap;vertical-align:1px}
+.tag.infer{background:var(--infer-soft);color:var(--infer)}
+.tag.unk{background:var(--warn-soft);color:var(--warn)}
+.tag.direct{background:var(--accent-soft);color:var(--accent)}
+.chip{display:inline-block;font-size:12px;font-weight:500;padding:1px 9px;border-radius:999px;white-space:nowrap}
+.r-强{background:var(--good-soft);color:var(--good)} .r-中{background:var(--warn-soft);color:var(--warn)}
+.r-弱,.r-负向{background:var(--bad-soft);color:var(--bad)} .r-无法判断{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.weeks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.week{border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.week .hd{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.week .wk{font-family:var(--font-data);font-weight:500;color:var(--accent)}
+.week .rg{font-size:12px;color:var(--muted)}
+.week .hd .chip{margin-left:auto}
+.week dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;font-size:13.5px}
+.week dt{color:var(--muted);white-space:nowrap}
+.week dd{margin:0}
+.week .ev{font-size:13px;border-top:1px dashed var(--line);padding-top:6px}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto}
+.chart .axis text{fill:var(--muted);font-size:11px;font-family:var(--font-data)}
+.chart .grid line{stroke:var(--line);stroke-width:1}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.events{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:4px 16px;font-size:13px}
+.events b{font-family:var(--font-data);color:var(--event);font-weight:500;margin-right:6px}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 9px;font-size:12px;line-height:1.5;font-family:var(--font-data);box-shadow:0 4px 14px rgba(0,0,0,.12);white-space:nowrap}
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 8px 8px 0;max-width:80ch}
+code{font-family:var(--font-data);font-size:.92em}
+footer{color:var(--muted);font-size:12px}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr)} nav.toc{display:none}}
+@media (max-width:480px){header h1{font-size:23px} .body{padding:0 14px 16px} section.block>details>summary{padding:14px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<div class="wrap">
+  <nav class="toc" id="toc" aria-label="章节"></nav>
+  <main id="main"></main>
+</div>
+
+<script>
+const D = /*__REPORT_DATA__*/null;
+
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const RATINGS = ["强","中","弱","负向","无法判断"];
+function fmt(s){
+  let h = esc(s);
+  h = h.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  h = h.replace(/`(.+?)`/g, "<code>$1</code>");
+  h = h.replace(/\{评级:(强|中|弱|负向|无法判断)\}/g, (m,r)=>`<span class="chip r-${r}">${r}</span>`);
+  h = h.replace(/\{推断(?::([^}]+))?\}/g, (m,c)=>`<span class="tag infer">推断${c?" · "+c:""}</span>`);
+  h = h.replace(/\{无法确认\}/g, `<span class="tag unk">无法确认</span>`);
+  h = h.replace(/\{直接\}/g, `<span class="tag direct">直接数据</span>`);
+  return h;
+}
+const isNum = v => typeof v === "number" || /^[-+]?[$#]?[\d,]+(\.\d+)?%?$/.test(String(v).trim());
+function cell(v){
+  if (v && typeof v === "object" && v.rating) return `<td><span class="chip r-${v.rating}">${v.rating}</span>${v.text?" "+fmt(v.text):""}</td>`;
+  if (RATINGS.includes(v)) return `<td><span class="chip r-${v}">${v}</span></td>`;
+  return isNum(v) ? `<td class="n">${esc(v)}</td>` : `<td>${fmt(v)}</td>`;
+}
+function table(b){
+  const th = b.columns.map(c=>`<th scope="col">${esc(c)}</th>`).join("");
+  const rows = b.rows.map(r=>`<tr>${r.map(cell).join("")}</tr>`).join("");
+  return `${b.title?`<h3>${esc(b.title)}</h3>`:""}<div class="tbl"><table><thead><tr>${th}</tr></thead><tbody>${rows}</tbody></table></div>${b.note?`<p class="note">${fmt(b.note)}</p>`:""}`;
+}
+function weeks(b){
+  return `<div class="weeks">${b.weeks.map(w=>`
+    <article class="week">
+      <div class="hd"><span class="wk">${esc(w.label)}</span><span class="rg">${esc(w.range)}</span>${w.rating?`<span class="chip r-${w.rating}">${w.rating}</span>`:""}</div>
+      <dl>${(w.items||[]).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${fmt(v)}</dd>`).join("")}</dl>
+      ${w.verdict?`<div class="ev">${fmt(w.verdict)}</div>`:""}
+    </article>`).join("")}</div>`;
+}
+function block(b){
+  switch(b.type){
+    case "text": return `<p>${fmt(b.text)}</p>`;
+    case "list": return `${b.title?`<h3>${esc(b.title)}</h3>`:""}<ul>${b.items.map(i=>`<li>${fmt(i)}</li>`).join("")}</ul>`;
+    case "conclusions": return `<ol class="concl">${b.items.map(i=>`<li><span>${fmt(i)}</span></li>`).join("")}</ol>`;
+    case "table": return table(b);
+    case "weeks": return weeks(b);
+    case "callout": return `<div class="callout">${fmt(b.text)}</div>`;
+    case "chart": return `<div class="chart" id="chart"></div><div class="legend"><span><i style="background:var(--accent)"></i>大类 BSR（越高越好，对数刻度）</span><span><i style="background:var(--price)"></i>售价</span><span><i style="background:var(--shade);height:10px"></i>${esc(D.chart.windowLabel||"分析窗口")}</span></div><ol class="events">${D.chart.events.map((e,i)=>`<li><b>${i+1}</b>${esc(e.date.slice(5))} ${fmt(e.label)}</li>`).join("")}</ol>`;
+    default: return "";
+  }
+}
+
+function render(){
+  document.title = D.title;
+  const main = document.getElementById("main"), toc = document.getElementById("toc");
+  let h = `<header><h1>${esc(D.heading||D.title)}</h1>${D.subtitle?`<p class="sub">${fmt(D.subtitle)}</p>`:""}
+    <dl class="meta">${D.meta.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${fmt(v)}</dd></div>`).join("")}</dl></header>`;
+  if (D.kpis?.length) h += `<div class="kpis">${D.kpis.map(k=>`<div class="kpi"><div class="k">${esc(k.label)}</div><div class="v">${esc(k.value)}</div>${k.note?`<div class="n">${fmt(k.note)}</div>`:""}</div>`).join("")}</div>`;
+  D.sections.forEach((s,i)=>{
+    h += `<section class="block" id="${esc(s.id)}"><details ${s.collapsed?"":"open"}><summary><span class="num">${String(i+1).padStart(2,"0")}</span><h2>${esc(s.title)}</h2><span class="chev"></span></summary><div class="body">${s.blocks.map(block).join("")}</div></details></section>`;
+  });
+  if (D.footer) h += `<footer>${fmt(D.footer)}</footer>`;
+  main.innerHTML = h;
+  toc.innerHTML = `<div class="lbl">章节</div>` + D.sections.map(s=>`<a href="#${esc(s.id)}">${esc(s.title)}</a>`).join("");
+  if (document.getElementById("chart")) drawChart();
+}
+
+function drawChart(){
+  const C = D.chart, el = document.getElementById("chart");
+  const W = 960, H = 330, m = {l:64, r:58, t:28, b:34}, iw = W-m.l-m.r, ih = H-m.t-m.b;
+  const t0 = Date.parse(C.dates[0]), t1 = Date.parse(C.dates[C.dates.length-1]);
+  const x = d => m.l + (Date.parse(d)-t0)/(t1-t0||1)*iw;
+  const bs = C.bsr.filter(v=>v>0), lo = Math.min(...bs)*0.85, hi = Math.max(...bs)*1.15;
+  const yb = v => m.t + (Math.log(v)-Math.log(lo))/(Math.log(hi)-Math.log(lo))*ih;
+  const ps = C.price.filter(v=>v>0), pl = Math.floor(Math.min(...ps)-3), ph = Math.ceil(Math.max(...ps)+3);
+  const yp = v => m.t + (ph-v)/(ph-pl)*ih;
+  const path = (arr, y, step) => { let d="", pen=false, prev=null;
+    arr.forEach((v,i)=>{ if(!(v>0)){pen=false;return;} const X=x(C.dates[i]).toFixed(1), Y=y(v).toFixed(1);
+      if(!pen){d+=`M${X},${Y}`;pen=true;} else d+= step?`H${X}V${Y}`:`L${X},${Y}`; }); return d; };
+  const ticksB = [500,1e3,2e3,5e3,1e4,2e4,5e4,1e5,2e5,5e5].filter(v=>v>=lo&&v<=hi);
+  const fmtB = v => v>=1e3 ? (v/1e3)+"k" : v;
+  const pStep = Math.max(5, Math.ceil((ph-pl)/4/5)*5), ticksP = [];
+  for (let v=Math.ceil(pl/pStep)*pStep; v<=ph; v+=pStep) ticksP.push(v);
+  const months = []; { const d=new Date(t0); d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth()+1);
+    while (d.getTime()<=t1){ months.push(d.toISOString().slice(0,10)); d.setUTCMonth(d.getUTCMonth()+1);} }
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="BSR 与售价走势">`;
+  if (C.window) s += `<rect x="${x(C.window[0])}" y="${m.t}" width="${x(C.window[1])-x(C.window[0])}" height="${ih}" fill="var(--shade)"/>`;
+  s += `<g class="grid">${ticksB.map(v=>`<line x1="${m.l}" x2="${W-m.r}" y1="${yb(v)}" y2="${yb(v)}"/>`).join("")}</g>`;
+  s += `<g class="axis">${ticksB.map(v=>`<text x="${m.l-8}" y="${yb(v)+4}" text-anchor="end">#${fmtB(v)}</text>`).join("")}
+        ${ticksP.map(v=>`<text x="${W-m.r+8}" y="${yp(v)+4}">$${v}</text>`).join("")}
+        ${months.map(d=>`<text x="${x(d)}" y="${H-10}" text-anchor="middle">${d.slice(0,7)}</text>`).join("")}</g>`;
+  C.events.forEach((e,i)=>{ const X=x(e.date);
+    s += `<line x1="${X}" x2="${X}" y1="${m.t}" y2="${m.t+ih}" stroke="var(--event)" stroke-dasharray="3 4" stroke-width="1"/>
+          <circle cx="${X}" cy="${m.t-12}" r="9" fill="var(--surface)" stroke="var(--event)" stroke-width="1.2"/>
+          <text x="${X}" y="${m.t-8}" text-anchor="middle" font-size="11" font-family="var(--font-data)" fill="var(--event)">${i+1}</text>`; });
+  s += `<path d="${path(C.price,yp,true)}" fill="none" stroke="var(--price)" stroke-width="1.6"/>`;
+  s += `<path d="${path(C.bsr,yb,false)}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>`;
+  s += `<line id="guide" x1="0" x2="0" y1="${m.t}" y2="${m.t+ih}" stroke="var(--muted)" stroke-width="1" visibility="hidden"/>`;
+  s += `<rect id="hit" x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent"/></svg><div class="tip" id="tip" hidden></div>`;
+  el.innerHTML = s;
+  const svg = el.querySelector("svg"), hit = svg.querySelector("#hit"), guide = svg.querySelector("#guide"), tip = el.querySelector("#tip");
+  const move = ev => { const r = svg.getBoundingClientRect(), sx = (ev.clientX-r.left)/r.width*W;
+    const t = t0 + (sx-m.l)/iw*(t1-t0); let bi=0, bd=Infinity;
+    C.dates.forEach((d,i)=>{ const dd=Math.abs(Date.parse(d)-t); if(dd<bd){bd=dd;bi=i;} });
+    const X = x(C.dates[bi]); guide.setAttribute("x1",X); guide.setAttribute("x2",X); guide.setAttribute("visibility","visible");
+    const b = C.bsr[bi], p = C.price[bi];
+    tip.innerHTML = `${C.dates[bi]}${C.d0?` · D+${Math.round((Date.parse(C.dates[bi])-Date.parse(C.d0))/864e5)}`:""}<br>BSR ${b>0?"#"+b.toLocaleString():"—"}<br>售价 ${p>0?"$"+p:"—"}`;
+    tip.hidden = false; const px = X/W*r.width; tip.style.left = Math.min(Math.max(px+12,0), r.width-150)+"px"; tip.style.top = "36px"; };
+  hit.addEventListener("pointermove", move); hit.addEventListener("pointerleave", ()=>{ tip.hidden=true; guide.setAttribute("visibility","hidden"); });
+}
+render();
+</script>

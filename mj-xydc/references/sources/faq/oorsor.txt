@@ -1,0 +1,17 @@
+数据指标问题
+# 
+OOR和SOR是什么意思？
+## OOR：其他自然推荐位
+OOR（Organic Other Recommendations）：其他自然推荐位，包括4+Star Styles，Featured From The Store, Todays' deals(不带有Sponsored标签)等其他自然流量推荐位
+展示位置汇总解释
+自然排名 搜索结果自然排名 AC（Amazon Choice ）：亚马逊推荐 包括Overall Pick 和 Popular Brand Pick TRB（Top Rated From Our Brands）： 高评价品牌 CPF（Climate Pledge Friendly）：气候友好承诺 此栏位同时包含了自然和广告位，计算流量时会区分自然和广告流量 OOR（Organic Other Recommendations）：其他自然推荐位 包括4+Star Styles，Featured From The Store, Todays’ deals(不带有Sponsored标签)等其他自然流量推荐位 1、4+ Star Styles 2、Featured from the
+西柚洞察知识库XIYOUZHAOCI
+点击查看OOR栏位详情
+## SOR：其他广告推荐位
+SOR（Sponsored Other Recommendations）：其他广告推荐位，包括Customers Frequently Viewed，4 stars and above, Trending now, Other items to consider, Inspired by similar searches等其他广告流量推荐位
+展示位置汇总解释
+自然排名 搜索结果自然排名 AC（Amazon Choice ）：亚马逊推荐 包括Overall Pick 和 Popular Brand Pick TRB（Top Rated From Our Brands）： 高评价品牌 CPF（Climate Pledge Friendly）：气候友好承诺 此栏位同时包含了自然和广告位，计算流量时会区分自然和广告流量 OOR（Organic Other Recommendations）：其他自然推荐位 包括4+Star Styles，Featured From The Store, Todays’ deals(不带有Sponsored标签)等其他自然流量推荐位 1、4+ Star Styles 2、Featured from the
+西柚洞察知识库XIYOUZHAOCI
+点击查看SOR栏位详情
+Previous
+Next

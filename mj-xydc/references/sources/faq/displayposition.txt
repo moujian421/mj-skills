@@ -1,0 +1,52 @@
+功能使用问题
+# 
+展示位置汇总解释
+“展示位置汇总解释”
+## 自然排名
+搜索结果自然排名
+## AC（Amazon Choice ）：亚马逊推荐
+包括Overall Pick 和 Popular Brand Pick
+Amazon's ChoiceOverall PickPopular Brand Pick
+## TRB（Top Rated From Our Brands）： 高评价品牌
+Top Rated From Our Brands
+## CPF（Climate Pledge Friendly）：气候友好承诺 
+此栏位同时包含了自然和广告位，计算流量时会区分自然和广告流量
+Climate Pledge Friendly
+## OOR（Organic Other Recommendations）：其他自然推荐位
+包括4+Star Styles，Featured From The Store, Todays' deals(不带有Sponsored标签)等其他自然流量推荐位
+### 1、4+ Star Styles
+4+ Star Styles
+### 2、Featured from the store
+Featured from the store
+### 3、Todays' deals(栏位标题不带有Sponsored标签)
+Todays' deals
+## SP（Sponsored Product）： 商品推广SP广告
+Sponsored Product
+## SB（Sponsored Brand ）：品牌推广SB广告
+Sponsored Brand 
+## SBV（Sponsored Brand Video ）：品牌视频广告
+Sponsored Brand Video
+## HR（Highly Rated ）：高度评价
+Highly Rated 
+## SOR（Sponsored Other Recommendations）：其他广告推荐位
+SOR是关键词搜索结果页中带有Sponsored标志的栏位，包括Customers Frequently Viewed，4 stars and above, Trending now, Other items to consider, Inspired by similar searches等其他广告流量推荐位。
+### 1、4 stars and above
+4 stars and above
+### 2、Trending now
+Trending now
+### 3、Trending styles
+Trending styles
+### 4、Other items to consider
+Other items to consider
+### 5、Inspired by similar searches
+Inspired by similar searches
+### 6、Customers frequently viewed
+Customers frequently viewed
+### 7、From frequently shopped brands
+From frequently shopped brands
+### 8、Top features from customer reviews
+Top features from customer reviews
+### 9、Today's deals(大栏位带有Sponsored标签)
+Today's deals
+Previous
+Next
