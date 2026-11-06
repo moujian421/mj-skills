@@ -7,8 +7,6 @@ AIRHOP 自用的 Claude skills（mj-* 系列）。安装：把需要的文件夹
 - mj-ads-analysis
 - mj-blackhorse-selection
 - mj-brand-line-review
-- mj-category-cpc-20261106a（旧版对照）
-- mj-category-cpc-20261106b
 - mj-category-weekly-monitor
 - mj-competitor-ads-frame
 - mj-competitor-launch-analysis
