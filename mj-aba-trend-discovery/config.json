@@ -1,6 +1,6 @@
 {
   "marketplace": "US",
-  "max_search_rank": 200000,
+  "max_search_rank": 500000,
   "page_size": 40,
   "min_rank_growth_pct": 70,
   "departments": [
@@ -72,7 +72,7 @@
   "seasonal_spike_ratio": 0.5,
   "brand_top1_click": 0.5,
   "xiyou_batch": 100,
-  "user_task": "我想通过抓取关键词ABA 周度排名来看看新出现的趋势产品，但是要排除节假日和季节性的",
+  "user_task": "我的目的是通过非季节性和非节日性的关键词的ABA排名上升，来抓取新兴市场",
   "cluster_exempt": 3,
   "seasonal_min_weeks": 2,
   "page_size_monthly": 15,
@@ -80,5 +80,71 @@
   "xiyou_reserved": [
     "xydc-mcp"
   ],
-  "google_top_n": 30
+  "google_top_n": 30,
+  "exclude_root_substr": [
+    "Video Game",
+    "Console",
+    "Jewelry",
+    "Watch",
+    "Clothing",
+    "Apparel",
+    "Shoe",
+    "Sandal",
+    "Boot",
+    "Sneaker",
+    "Dress",
+    "Grocery",
+    "Gourmet",
+    "Gift Card",
+    "Party Supplies",
+    "Advent",
+    "Holiday",
+    "Seasonal",
+    "Book",
+    "Kindle",
+    "Music",
+    "Movie",
+    "Software",
+    "Computer",
+    "Projector",
+    "Camera",
+    "Phone",
+    "Headphone",
+    "Television",
+    "Portable Power",
+    "Electronics",
+    "Costume",
+    "Seasoning",
+    "Snack",
+    "Beverage",
+    "Candy",
+    "Coffee",
+    "Tea "
+  ],
+  "ly_window": 6,
+  "rank_bands": [
+    [
+      1,
+      50000,
+      60
+    ],
+    [
+      50001,
+      200000,
+      180
+    ],
+    [
+      200001,
+      500000,
+      60
+    ]
+  ],
+  "top3_click_concentrated": 0.6,
+  "track_archive_weeks": 8,
+  "track_confirm_weeks": 2,
+  "track_confirm_max_drop": 1.5,
+  "growth_min": 2,
+  "avg_weeks": 4,
+  "aba_rise_min": 2,
+  "aba_pre_cap": 400
 }
